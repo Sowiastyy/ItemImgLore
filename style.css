@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+h1, h2 {
+    margin-top: 20px;
+}
+
+#itemDisplay {
+    margin-top: 20px;
+}
+
+#itemCanvas {
+    border: 1px solid #ccc;
+}
+
+#generateCommand, #copyCommand {
+    margin-top: 20px;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+
+#commandOutput {
+    margin-top: 20px;
+    width: 80%;
+    height: 200px;
+    resize: none;
+}
+
+#lorePreview {
+    margin-top: 20px;
+    display: inline-block;
+    text-align: left;
+    background-color: #170817; /* Tło podglądu */
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#lorePreview .pixel {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 2px; /* 2 piksele przerwy poziomej */
+    margin-bottom: -4px; /* Aby uwzględnić linie bez dodatkowej wysokości */
+}
+
+#lorePreview .line {
+    height: 16px;
+    margin-bottom: 4px; /* 4 piksele przerwy pionowej */
+}

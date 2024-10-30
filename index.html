@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Image to Item Lore Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Image to Item Lore Generator</h1>
+    <input type="file" id="imageInput" accept="image/png">
+    <div>
+        <label>
+            <input type="checkbox" id="onlyLoreTag">
+            Only Lore tag
+        </label>
+    </div>
+    <div id="itemDisplay">
+        <canvas id="itemCanvas"></canvas>
+    </div>
+    <button id="generateCommand">Generuj komendę</button>
+    <button id="copyCommand">Skopiuj komendę</button>
+    <textarea id="commandOutput" readonly></textarea>
+    <h2>Podgląd Lore</h2>
+    <div id="lorePreview"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
