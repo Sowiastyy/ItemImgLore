@@ -3,27 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Image to Item Lore Generator</title>
+    <!-- Link do czcionki Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <!-- Link do ikon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Image to Item Lore Generator</h1>
-    <!-- Zmieniono accept na "image/*", aby akceptować wszystkie formaty obrazów -->
-    <input type="file" id="imageInput" accept="image/*">
-    <div>
-        <label>
-            <input type="checkbox" id="onlyLoreTag">
-            Only Lore tag
-        </label>
+    <div class="container">
+        <h1>Image to Item Lore Generator</h1>
+        <div class="input-section">
+            <!-- Poprawiony obszar przeciągania z image inputem -->
+            <div class="file-input" id="dropArea">
+                <input type="file" id="imageInput" accept="image/*">
+                <div class="upload-content">
+                    <span class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                    <p>Przeciągnij i upuść obraz tutaj lub kliknij, aby wybrać plik</p>
+                </div>
+            </div>
+            <div class="options">
+                <!-- Niestandardowe checkboxy z poprawionymi odstępami -->
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="onlyLoreTag">
+                    <span class="checkmark"></span>
+                    Only Lore tag
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="italicOption" checked>
+                    <span class="checkmark"></span>
+                    Italic text
+                </label>
+            </div>
+            <div class="size-inputs">
+                <!-- Niestandardowe inputy number -->
+                <label>
+                    Maksymalna szerokość:
+                    <div class="number-input">
+                        <input type="number" id="maxWidthInput" value="50" min="1">
+                    </div>
+                </label>
+                <label>
+                    Maksymalna wysokość:
+                    <div class="number-input">
+                        <input type="number" id="maxHeightInput" value="50" min="1">
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div id="itemDisplay">
+            <canvas id="itemCanvas"></canvas>
+        </div>
+        <div class="buttons">
+            <!-- Przycisk "Generuj komendę" jest nieaktywny do momentu wybrania obrazu -->
+            <button id="generateCommand"><i class="fas fa-cogs"></i> Generuj komendę</button>
+            <button id="copyCommand"><i class="fas fa-copy"></i> Skopiuj komendę</button>
+        </div>
+        <textarea id="commandOutput" readonly></textarea>
+        <p id="commandLength"></p>
+        <div id="statusMessage"></div>
+        <div id="progressContainer">
+            <span class="progress-label left">Good</span>
+            <div id="progressBar">
+                <div id="progressIndicator"></div>
+            </div>
+            <span class="progress-label right">Bad</span>
+        </div>
+        <h2>Podgląd Lore</h2>
+        <div id="lorePreview"></div>
     </div>
-    <div id="itemDisplay">
-        <canvas id="itemCanvas"></canvas>
-    </div>
-    <button id="generateCommand">Generuj komendę</button>
-    <button id="copyCommand">Skopiuj komendę</button>
-    <textarea id="commandOutput" readonly></textarea>
-    <h2>Podgląd Lore</h2>
-    <div id="lorePreview"></div>
-
+    <!-- Stopka z podpisem -->
+    <footer>
+        © 2024 HootyDev
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
