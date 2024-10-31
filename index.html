@@ -7,7 +7,355 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
     <!-- Link do ikon Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://github.com/Sowiastyy/ItemImgLore/blob/main/style.css">
+    <style>
+        /* Ustawienia globalne */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    margin: 0;
+    font-size: 120%;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Nagłówki */
+h1, h2 {
+    margin-top: 20px;
+    color: #e74c3c;
+}
+
+/* Sekcja wejściowa */
+.input-section {
+    margin-top: 20px;
+}
+
+/* Niestandardowy input pliku z drag and drop */
+.file-input {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+    margin: 0 auto;
+    border: 2px dashed #7f8c8d;
+    border-radius: 10px;
+    background-color: #34495e;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-input input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-content {
+    text-align: center;
+}
+
+.file-input .upload-icon {
+    font-size: 50px;
+    color: #7f8c8d;
+}
+
+.file-input p {
+    color: #bdc3c7;
+    margin-top: 10px;
+}
+
+/* Niestandardowe checkboxy z odstępami */
+.options {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.options label {
+    margin: 0 15px; /* Dodano odstępy między checkboxami */
+}
+
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox .checkmark {
+    position: absolute;
+    top: 0;
+    left: -25px;
+    height: 20px;
+    width: 20px;
+    background-color: #34495e;
+    border: 2px solid #7f8c8d;
+    border-radius: 4px;
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+    background-color: #3b5360;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.custom-checkbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.custom-checkbox .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #ecf0f1;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Niestandardowe inputy number */
+.number-input {
+    display: inline-flex;
+    align-items: center;
+}
+
+.number-input button {
+    background-color: #e74c3c;
+    color: #ecf0f1;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0;
+}
+
+.number-input button:hover {
+    background-color: #c0392b;
+}
+
+.number-input input[type=number] {
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #7f8c8d;
+    border-left: none;
+    border-right: none;
+    background-color: #34495e;
+    color: #ecf0f1;
+    font-size: 16px;
+}
+
+.number-input button:first-of-type {
+    border-radius: 5px 0 0 5px;
+}
+
+.number-input button:last-of-type {
+    border-radius: 0 5px 5px 0;
+}
+
+.size-inputs {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.size-inputs label {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.size-inputs label span {
+    margin-right: 5px;
+}
+
+/* Wyświetlanie obrazu */
+#itemDisplay {
+    margin-top: 20px;
+}
+
+#itemCanvas {
+    border: 1px solid #7f8c8d;
+    background-color: #34495e;
+}
+
+/* Przyciski */
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons button {
+    background-color: #e74c3c;
+    color: #ecf0f1;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.buttons button i {
+    margin-right: 5px;
+}
+
+.buttons button:hover {
+    background-color: #c0392b;
+}
+
+.buttons button:disabled {
+    background-color: #7f8c8d;
+    cursor: not-allowed;
+}
+
+/* Pole tekstowe komendy */
+#commandOutput {
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    resize: none;
+    background-color: #34495e;
+    color: #ecf0f1;
+    border: 1px solid #7f8c8d;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Długość komendy */
+#commandLength {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Pasek postępu */
+#statusMessage {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#progressContainer {
+    margin-top: 20px;
+    width: 80%;
+    display: inline-block;
+    position: relative;
+}
+
+#progressBar {
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to right, green, red);
+    position: relative;
+    border: 1px solid #7f8c8d;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#progressIndicator {
+    width: 5px;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.progress-label {
+    position: absolute;
+    top: -25px;
+    font-weight: bold;
+}
+
+.progress-label.left {
+    left: 0;
+}
+
+.progress-label.right {
+    right: 0;
+}
+
+#lorePreview {
+    margin-top: 20px;
+    display: inline-block;
+    text-align: left;
+    background-color: #170817; /* Tło podglądu */
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#lorePreview .pixel {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 2px; /* 2 piksele przerwy poziomej */
+    margin-bottom: -4px; /* Aby uwzględnić linie bez dodatkowej wysokości */
+}
+
+#lorePreview .line {
+    height: 16px;
+    margin-bottom: 4px; /* 4 piksele przerwy pionowej */
+}
+
+#lorePreview .italic {
+    transform: skewX(-12deg); /* Dodaje efekt kursywy */
+}
+
+/* Stopka */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #1a252f;
+    color: #7f8c8d;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Responsywność */
+@media (max-width: 600px) {
+    .options, .size-inputs {
+        flex-direction: column;
+    }
+
+    .options label, .size-inputs label {
+        margin: 5px 0;
+    }
+
+    .buttons button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+    </style>
 </head>
 <body>
     <div class="container">
