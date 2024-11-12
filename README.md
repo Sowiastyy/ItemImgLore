@@ -17,7 +17,7 @@ This application transforms any image into a series of commands that can generat
 4. Paste it into Minecraft to see your image appear in lore text!
 
 ### Example
-![Example Image](https://your-image-link-here.com/example.png)
+![Example Image](https://github.com/Sowiastyy/ItemImgLore/blob/main/preview.png)
 
 This tool is great for adding a personal touch to in-game items, whether for roleplay, decorative items, or just for fun!
 
